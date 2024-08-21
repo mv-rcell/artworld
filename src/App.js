@@ -1,23 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import React, { useState } from 'react';
+import GalleryView from './components/GalleryView';
+import UserSubmission from './components/UserSubmission';
+import './index.css'
+import Favorites from './components/Favorites';;
 
 function App() {
+  const [showSubmissionForm, setShowSubmissionForm] = useState(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div className="min-h-screen bg-yellow-100">
+      <header className="bg-blue-600 text-white p-4">
+        <h1 className="text-3xl">Virtual Art Gallery</h1>
+        <button
+          className="bg-red-600 text-white p-2 rounded mt-2"
+          onClick={() => setShowSubmissionForm(!showSubmissionForm)}
         >
-          Learn React
-        </a>
+          {showSubmissionForm ? 'Close Submission Form' : 'Submit Your Artwork'}
+        </button>
       </header>
+      <main className="p-4">
+        {showSubmissionForm && <UserSubmission />}
+        <GalleryView />
+      </main>
     </div>
   );
 }
